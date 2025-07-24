@@ -1,1 +1,13 @@
-<p>navbar works!</p>
+<div class="navbar-box">
+  <ul>
+    <li>
+      <button
+        *ngFor="let mode of modes"
+        [class.active]="activeMode === mode.value"
+        (click)="selectMode(mode.value)"
+      >
+        {{ mode.label }}
+      </button>
+    </li>
+  </ul>
+</div>

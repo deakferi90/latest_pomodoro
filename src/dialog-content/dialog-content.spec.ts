@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimerComponent } from './timer.component';
+import { DialogContentComponent } from './dialog-content';
 
-describe('Timer', () => {
-  let component: TimerComponent;
-  let fixture: ComponentFixture<TimerComponent>;
+describe('DialogContent', () => {
+  let component: DialogContentComponent;
+  let fixture: ComponentFixture<DialogContentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimerComponent],
+      imports: [DialogContentComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TimerComponent);
+    fixture = TestBed.createComponent(DialogContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

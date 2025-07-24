@@ -1,1 +1,14 @@
-<p>timer works!</p>
+<div class="circle">
+  <div class="inner-circle">
+    <div class="progress-bar" [style.--progress]="progressPercent + '%'">
+      <div class="displayItems">
+        <div class="time">{{ timeDisplay }}</div>
+        <div class="controls">
+          <button (click)="toggleTimer()" class="btn-play-pause">
+            {{ isRunning ? "Pause" : "Play" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
