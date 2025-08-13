@@ -20,7 +20,7 @@
         border: none;
 
         &.active {
-          background: #f87070;
+          background: var(--primary-color);
           color: #1f213f;
           opacity: 100%;
         }

@@ -37,7 +37,10 @@
   width: 336px;
   height: 336px;
   border-radius: 50%;
-  background: conic-gradient(#f87070 var(--progress, 0%), transparent 0%);
+  background: conic-gradient(
+    var(--primary-color) var(--progress, 0%),
+    transparent 0%
+  );
   position: relative;
   display: flex;
   flex-direction: column;

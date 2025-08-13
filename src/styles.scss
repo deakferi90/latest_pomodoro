@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:host {
+  color: #f87070;
+}
+
 body {
   background: #1f213f !important;
 }
