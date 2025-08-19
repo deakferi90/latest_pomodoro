@@ -94,3 +94,11 @@
   border-radius: 50%;
   background: #161932;
 }
+
+circle {
+  stroke: var(--primary-color);
+}
+
+.text {
+  font-family: var(--primary-font);
+}

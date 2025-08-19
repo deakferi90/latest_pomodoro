@@ -1,0 +1,121 @@
+.btn-apply {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  background: #f87070;
+  color: #fff;
+  position: fixed;
+  top: calc(50% + 130px);
+  left: calc(50% - 55px);
+}
+
+h1,
+h2 {
+  color: #161932;
+  border-bottom: 1px solid #979797;
+  font-family: "Courier New", Courier, monospace;
+}
+
+h1 {
+  padding: 10px 20px;
+  margin: 0;
+
+  span {
+    font-family: cursive;
+    font-size: 16px;
+    color: #979797;
+    padding: 10px;
+  }
+}
+
+h2 {
+  width: 80px;
+  margin: 20px;
+  padding: 20px;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: left;
+
+  &:nth-last-of-type(1) {
+    border-bottom: none;
+  }
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+
+  span {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.circle.selected {
+  border: 2px solid white;
+}
+
+.circle svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.selected-font {
+  background-color: black;
+  color: white;
+}
+
+.color-container .circle svg {
+  position: absolute;
+  top: 30%;
+  right: 30%;
+}
+
+.kumbh-sans-bold {
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0px;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0px;
+}
+
+.roboto-slab-regular {
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0px;
+}

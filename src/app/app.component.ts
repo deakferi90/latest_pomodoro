@@ -1,21 +1,26 @@
 import {
   Component,
-  ElementRef,
-  OnInit,
   Renderer2,
-  signal,
+  inject,
+  Injector,
+  PLATFORM_ID,
+  runInInjectionContext,
+  effect,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { TimerComponent } from '../timer/timer.component';
 import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogContentComponent } from '../dialog-content/dialog-content';
+import { ColorService } from '../color.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
   imports: [
     NavbarComponent,
     TimerComponent,
@@ -23,33 +28,48 @@ import { DialogContentComponent } from '../dialog-content/dialog-content';
     MatDialogModule,
     MatButtonModule,
   ],
-  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  constructor(
-    private dialog: MatDialog,
-    private el: ElementRef,
-    private renderer: Renderer2
-  ) {}
+export class AppComponent {
+  private renderer = inject(Renderer2);
+  private colorService = inject(ColorService);
+  private dialog = inject(MatDialog);
+  private platformId = inject(PLATFORM_ID);
+  private injector = inject(Injector);
 
-  ngOnInit(): void {
-    this.renderer.setStyle(
-      this.el.nativeElement,
-      '--primary-color',
-      this.primaryColor
-    );
-  }
-
-  activeBtn = signal<'pomodoro' | 'shortBreak' | 'longBreak'>('pomodoro');
   activeMode: 'pomodoro' | 'shortBreak' | 'longBreak' = 'pomodoro';
 
-  primaryColor = '#f87070';
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      runInInjectionContext(this.injector, () => {
+        effect(() => {
+          // Reactive effect runs whenever signals change
+          const color = this.colorService.primaryColor();
+          const font = this.colorService.primaryFont();
+
+          this.renderer.setStyle(
+            document.documentElement,
+            '--primary-color',
+            color,
+            2
+          );
+          this.renderer.setStyle(
+            document.documentElement,
+            '--primary-font',
+            font,
+            2
+          );
+        });
+      });
+    }
+  }
 
   onModeChange(mode: 'pomodoro' | 'shortBreak' | 'longBreak') {
     this.activeMode = mode;
   }
 
   openDialog() {
-    this.dialog.open(DialogContentComponent);
+    this.dialog.open(DialogContentComponent, {
+      panelClass: 'custom-dialog-container',
+    });
   }
 }

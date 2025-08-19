@@ -3,9 +3,26 @@
 @tailwind utilities;
 
 :host {
-  color: #f87070;
+  color: var(--primary-color);
+}
+
+:root {
+  --primary-color: #f87070;
+  --primary-font: "Kumbh Sans";
 }
 
 body {
   background: #1f213f !important;
+}
+
+.custom-dialog-container {
+  width: 400px !important;
+  height: 300px !important;
+  overflow: hidden !important;
+  border-radius: 20px !important;
+}
+
+.mdc-dialog--open .mat-mdc-dialog-surface,
+.mdc-dialog--closing .mat-mdc-dialog-surface {
+  overflow: hidden !important;
 }
