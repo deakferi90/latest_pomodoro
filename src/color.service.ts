@@ -17,11 +17,11 @@ export class ColorService {
     }
   }
 
-  primaryColor(): any {
+  primaryColor(): string {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem(this.colorKey) || null;
+      return localStorage.getItem(this.colorKey) || '#f87070';
     }
-    return null;
+    return '#f87070';
   }
 
   setFont(fontFamily: string) {
@@ -37,8 +37,8 @@ export class ColorService {
 
   primaryFont(): string {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem(this.fontKey) || 'kumbh-sans-bold';
+      return localStorage.getItem(this.fontKey) || '"Kumbh Sans", sans-serif';
     }
-    return 'kumbh-sans-bold';
+    return '"Kumbh Sans", sans-serif';
   }
 }

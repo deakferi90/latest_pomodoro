@@ -30,7 +30,7 @@ import { ColorService } from '../color.service';
     MatButtonModule,
   ],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private renderer = inject(Renderer2);
   private colorService = inject(ColorService);
   private dialog = inject(MatDialog);
@@ -61,11 +61,6 @@ export class AppComponent implements OnInit {
         });
       });
     }
-  }
-
-  ngOnInit(): void {
-    this.colorService.setColor('#F87070');
-    this.colorService.setFont('Kumbh Sans');
   }
 
   onModeChange(mode: 'pomodoro' | 'shortBreak' | 'longBreak') {
