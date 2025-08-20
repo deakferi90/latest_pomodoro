@@ -13,9 +13,7 @@ describe('DialogContent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DialogContentComponent],
-      providers: [
-        { provide: MatDialogRef, useValue: matDialogRefMock }, // <-- provide mock
-      ],
+      providers: [{ provide: MatDialogRef, useValue: matDialogRefMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DialogContentComponent);
