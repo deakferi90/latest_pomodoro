@@ -41,12 +41,11 @@ export class DialogContentComponent implements OnInit {
     this.selectedColor = color;
   }
 
-  selectFont(font: string) {
-    this.selectedFont = font;
+  selectFont(fontClass: string) {
+    this.selectedFont = fontClass;
   }
 
   applySettings() {
-    // Update the signals in the service
     this.colorService.setColor(this.selectedColor);
     this.colorService.setFont(this.selectedFont);
 

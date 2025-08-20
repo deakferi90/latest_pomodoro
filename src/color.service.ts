@@ -1,33 +1,48 @@
-import { Injectable, signal } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ColorService {
-  private _primaryColor = signal<string>('#F87070'); // default color
-  private _primaryFont = signal<string>('Kumbh Sans'); // default font
+  private colorKey = 'primaryColor';
+  private fontKey = 'primaryFont';
 
-  primaryColor(): string {
-    return this._primaryColor();
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  setColor(color: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(this.colorKey, color);
+      document.documentElement.style.setProperty('--primary-color', color);
+    }
+  }
+
+  primaryColor(): any {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(this.colorKey) || null;
+    }
+    return null;
+  }
+
+  setFont(fontClass: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(this.fontKey, fontClass);
+
+      document.body.classList.remove(
+        'kumbh-sans-bold',
+        'space-mono-bold',
+        'roboto-slab-regular'
+      );
+      document.body.classList.add(fontClass);
+
+      document.documentElement.style.setProperty('--primary-font', fontClass);
+    }
   }
 
   primaryFont(): string {
-    return this._primaryFont();
-  }
-
-  setColor(color: string): void {
-    this._primaryColor.set(color);
-  }
-
-  setFont(font: string): void {
-    this._primaryFont.set(font);
-  }
-
-  get colorSignal() {
-    return this._primaryColor;
-  }
-
-  get fontSignal() {
-    return this._primaryFont;
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(this.fontKey) || 'kumbh-sans-bold';
+    }
+    return 'kumbh-sans-bold';
   }
 }

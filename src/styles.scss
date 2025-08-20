@@ -4,15 +4,12 @@
 
 :host {
   color: var(--primary-color);
-}
-
-:root {
-  --primary-color: #f87070;
-  --primary-font: "Kumbh Sans";
+  font-family: var(--primary-font);
 }
 
 body {
   background: #1f213f !important;
+  font-family: var(--primary-font);
 }
 
 .custom-dialog-container {
@@ -25,4 +22,28 @@ body {
 .mdc-dialog--open .mat-mdc-dialog-surface,
 .mdc-dialog--closing .mat-mdc-dialog-surface {
   overflow: hidden !important;
+}
+
+.kumbh-sans-bold {
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0px;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0px;
+}
+
+.roboto-slab-regular {
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0px;
 }

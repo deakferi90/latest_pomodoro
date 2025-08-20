@@ -14,7 +14,6 @@ h1,
 h2 {
   color: #161932;
   border-bottom: 1px solid #979797;
-  font-family: "Courier New", Courier, monospace;
 }
 
 h1 {
@@ -79,6 +78,13 @@ h2 {
   border: 2px solid white;
 }
 
+.font-circle {
+  &.selected {
+    color: #fff !important;
+    background: #333 !important;
+  }
+}
+
 .circle svg {
   position: absolute;
   top: 0;
@@ -94,28 +100,4 @@ h2 {
   position: absolute;
   top: 30%;
   right: 30%;
-}
-
-.kumbh-sans-bold {
-  font-family: "Kumbh Sans", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 125%;
-  letter-spacing: 0px;
-}
-
-.space-mono-bold {
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 125%;
-  letter-spacing: 0px;
-}
-
-.roboto-slab-regular {
-  font-family: "Roboto Slab", serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 125%;
-  letter-spacing: 0px;
 }

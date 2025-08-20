@@ -6,6 +6,7 @@ import {
   PLATFORM_ID,
   runInInjectionContext,
   effect,
+  OnInit,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -29,7 +30,7 @@ import { ColorService } from '../color.service';
     MatButtonModule,
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private renderer = inject(Renderer2);
   private colorService = inject(ColorService);
   private dialog = inject(MatDialog);
@@ -42,7 +43,6 @@ export class AppComponent {
     if (isPlatformBrowser(this.platformId)) {
       runInInjectionContext(this.injector, () => {
         effect(() => {
-          // Reactive effect runs whenever signals change
           const color = this.colorService.primaryColor();
           const font = this.colorService.primaryFont();
 
@@ -61,6 +61,11 @@ export class AppComponent {
         });
       });
     }
+  }
+
+  ngOnInit() {
+    this.colorService.setColor(this.colorService.primaryColor());
+    this.colorService.setFont(this.colorService.primaryFont());
   }
 
   onModeChange(mode: 'pomodoro' | 'shortBreak' | 'longBreak') {
