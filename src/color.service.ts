@@ -24,14 +24,17 @@ export class ColorService {
     return '#f87070';
   }
 
-  setFont(fontFamily: string) {
+  setFont(fontClass: string) {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem(this.fontKey, fontFamily);
+      localStorage.setItem(this.fontKey, fontClass);
 
-      document.documentElement.style.setProperty(
-        '--primary-font',
-        `"${fontFamily}", sans-serif`
+      document.body.classList.remove(
+        'kumbh-sans-bold',
+        'space-mono-bold',
+        'roboto-slab-regular'
       );
+
+      document.body.classList.add(fontClass);
     }
   }
 
