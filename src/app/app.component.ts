@@ -63,9 +63,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.colorService.setColor(this.colorService.primaryColor());
-    this.colorService.setFont(this.colorService.primaryFont());
+  ngOnInit(): void {
+    this.colorService.setColor('#F87070');
+    this.colorService.setFont('Kumbh Sans');
   }
 
   onModeChange(mode: 'pomodoro' | 'shortBreak' | 'longBreak') {
