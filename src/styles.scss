@@ -7,6 +7,10 @@
   font-family: var(--primary-font);
 }
 
+:root {
+  --primary-color: #f87070;
+}
+
 body {
   background: #1f213f !important;
   font-family: var(--primary-font);
@@ -34,7 +38,7 @@ body {
 
 .space-mono-bold {
   font-family: "Space Mono", monospace;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 16px;
   line-height: 125%;
   letter-spacing: 0px;
