@@ -24,18 +24,14 @@ export class ColorService {
     return null;
   }
 
-  setFont(fontClass: string) {
+  setFont(fontFamily: string) {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem(this.fontKey, fontClass);
+      localStorage.setItem(this.fontKey, fontFamily);
 
-      document.body.classList.remove(
-        'kumbh-sans-bold',
-        'space-mono-bold',
-        'roboto-slab-regular'
+      document.documentElement.style.setProperty(
+        '--primary-font',
+        `"${fontFamily}", sans-serif`
       );
-      document.body.classList.add(fontClass);
-
-      document.documentElement.style.setProperty('--primary-font', fontClass);
     }
   }
 

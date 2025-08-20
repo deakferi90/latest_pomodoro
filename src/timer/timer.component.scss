@@ -56,12 +56,11 @@
 
   .displayItems {
     z-index: 1;
+    position: relative;
 
     .controls {
       display: grid;
       text-align: center;
-      position: relative;
-      top: 70px;
 
       .btn-play-pause {
         font-size: 24px;
