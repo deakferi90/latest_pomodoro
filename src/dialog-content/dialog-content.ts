@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./dialog-content.scss'],
   imports: [CommonModule],
 })
-export class DialogContentComponent implements OnInit {
+export class DialogContentComponent {
   selectedColor: string;
   selectedFont: string;
 
@@ -30,8 +30,6 @@ export class DialogContentComponent implements OnInit {
     this.selectedColor = this.colorService.primaryColor();
     this.selectedFont = this.colorService.primaryFont();
   }
-
-  ngOnInit(): void {}
 
   closeDialog() {
     this.dialogRef.close();
