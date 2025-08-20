@@ -13,8 +13,9 @@
 }
 
 body {
-  background: #1f213f !important;
+  background: var(--primary-color);
   font-family: var(--primary-font);
+  margin: 0;
 }
 
 .custom-dialog-container {
