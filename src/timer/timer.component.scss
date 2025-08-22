@@ -46,25 +46,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  font-size: 96px;
   color: #d7e0ff;
   .time {
-    z-index: 2;
-    display: flex;
+    font-size: 96px;
   }
 
   .displayItems {
     z-index: 1;
     position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
 
     .controls {
       text-align: center;
-      display: flex;
+      position: absolute;
+      left: calc(50% - 20px);
 
       .btn-play-pause {
         font-size: 24px;
