@@ -99,3 +99,9 @@ circle {
 .text {
   font-family: var(--primary-font);
 }
+
+@media screen and (max-width: 410px) {
+  .circle {
+    margin-top: -30px !important;
+  }
+}
