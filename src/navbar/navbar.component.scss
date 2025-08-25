@@ -32,3 +32,17 @@
     }
   }
 }
+
+@media screen and (max-width: 410px) {
+  .navbar-box {
+    ul {
+      margin: 0;
+
+      li {
+        button {
+          padding: 12px;
+        }
+      }
+    }
+  }
+}
