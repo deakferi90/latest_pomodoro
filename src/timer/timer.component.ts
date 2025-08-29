@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   Component,
   Input,
@@ -9,6 +9,8 @@ import {
   ChangeDetectorRef,
   OnDestroy,
   NgZone,
+  PLATFORM_ID,
+  Inject,
 } from '@angular/core';
 
 type Mode = 'pomodoro' | 'shortBreak' | 'longBreak';
@@ -26,6 +28,8 @@ export class TimerComponent implements OnChanges, OnDestroy {
     'pomodoro' | 'shortBreak' | 'longBreak'
   >();
 
+  public audio?: HTMLAudioElement;
+  public isBrowser: boolean;
   timeDisplay: string = '25:00';
   progressPercent: number = 100;
   private hasStartedOnce: boolean = false;
@@ -37,7 +41,18 @@ export class TimerComponent implements OnChanges, OnDestroy {
 
   private pomodoroCount: number = 0;
 
-  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    if (this.isBrowser) {
+      this.audio = new Audio('game-level-complete-143022.mp3');
+      this.audio.load();
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['activeBtn']) {
@@ -75,6 +90,12 @@ export class TimerComponent implements OnChanges, OnDestroy {
     this.updateProgress();
   }
 
+  playAudio() {
+    if (this.isBrowser && this.audio) {
+      this.audio.play();
+    }
+  }
+
   updateDisplay() {
     this.timeDisplay = this.formatTime(this.secondsLeft);
   }
@@ -97,6 +118,7 @@ export class TimerComponent implements OnChanges, OnDestroy {
     if (this.isRunning) return;
     this.isRunning = true;
     this.hasStartedOnce = true;
+
     this.ngZone.runOutsideAngular(() => {
       this.timerInterval = setInterval(() => {
         if (this.secondsLeft > 0) {
@@ -137,6 +159,11 @@ export class TimerComponent implements OnChanges, OnDestroy {
   }
 
   handleTimerEnd() {
+    if (this.audio) {
+      this.audio.currentTime = 0;
+      this.audio.play().catch((err) => console.warn('Play blocked:', err));
+    }
+
     this.isAutoSwitch = true;
     if (this.activeBtn === 'pomodoro') {
       this.pomodoroCount++;

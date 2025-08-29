@@ -46,7 +46,7 @@ export class DialogContentComponent {
   applySettings() {
     this.colorService.setColor(this.selectedColor);
     this.colorService.setFont(this.selectedFont);
-
+    this.closeDialog();
     this.dialogRef.close();
   }
 }
