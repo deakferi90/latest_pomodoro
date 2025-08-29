@@ -74,16 +74,16 @@ export class TimerComponent implements OnChanges, OnDestroy {
 
     switch (mode) {
       case 'pomodoro':
-        this.totalSeconds = 25 * 60;
+        this.totalSeconds = 25 * 1;
         break;
       case 'shortBreak':
-        this.totalSeconds = 5 * 60;
+        this.totalSeconds = 5 * 1;
         break;
       case 'longBreak':
-        this.totalSeconds = 15 * 60;
+        this.totalSeconds = 15 * 1;
         break;
       default:
-        this.totalSeconds = 25 * 60;
+        this.totalSeconds = 25 * 1;
     }
     this.secondsLeft = this.totalSeconds;
     this.updateDisplay();
