@@ -24,9 +24,7 @@ type Mode = 'pomodoro' | 'shortBreak' | 'longBreak';
 })
 export class TimerComponent implements OnChanges, OnDestroy {
   @Input() activeBtn!: Mode;
-  @Output() modeChange = new EventEmitter<
-    'pomodoro' | 'shortBreak' | 'longBreak'
-  >();
+  @Output() modeChange = new EventEmitter<Mode>();
 
   public audio?: HTMLAudioElement;
   public isBrowser: boolean;
@@ -40,6 +38,7 @@ export class TimerComponent implements OnChanges, OnDestroy {
   public isRunning: boolean = false;
 
   private pomodoroCount: number = 0;
+  private endTime: number | null = null;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -119,21 +118,26 @@ export class TimerComponent implements OnChanges, OnDestroy {
     this.isRunning = true;
     this.hasStartedOnce = true;
 
+    this.endTime = Date.now() + this.secondsLeft * 1000;
+
     this.ngZone.runOutsideAngular(() => {
       this.timerInterval = setInterval(() => {
-        if (this.secondsLeft > 0) {
-          this.secondsLeft--;
-          this.ngZone.run(() => {
-            this.updateDisplay();
-            this.updateProgress();
-            this.cdr.detectChanges();
-          });
-        } else {
-          this.ngZone.run(() => {
+        const now = Date.now();
+        const diff = this.endTime
+          ? Math.max(0, Math.round((this.endTime - now) / 1000))
+          : 0;
+
+        this.ngZone.run(() => {
+          this.secondsLeft = diff;
+          this.updateDisplay();
+          this.updateProgress();
+          this.cdr.detectChanges();
+
+          if (this.secondsLeft <= 0) {
             this.clearTimer();
             this.handleTimerEnd();
-          });
-        }
+          }
+        });
       }, 1000);
     });
   }
@@ -146,6 +150,7 @@ export class TimerComponent implements OnChanges, OnDestroy {
     this.clearTimer();
     this.secondsLeft = this.totalSeconds;
     this.isRunning = false;
+    this.endTime = null;
     this.updateDisplay();
     this.updateProgress();
   }
